@@ -1,0 +1,67 @@
+#main11{
+    height: 25vh;
+    width:auto
+}
+#chart-container{
+    height: 40vh;
+    width:auto
+}
+
+#chart-containerbig{
+    height: 40vh;
+    width:auto
+}
+#chart-containerbaree{
+    height: 40vh;
+    width:auto
+}
+
+.card1{
+    margin-top: 10px;
+    box-shadow: -10px 10px 10px grey;
+    padding: 2px;
+}
+.card2{
+    margin-top: 10px;
+    box-shadow: 10px 10px 10px grey;
+    padding: 2px;
+}
+
+
+.cardmiddle{
+    margin-top: 10px;
+    box-shadow: 0px 0px 30px grey;
+ 
+}
+
+nav{
+    box-shadow: 0px 0px 10px grey;
+}
+
+
+
+
+.node {
+    cursor: pointer;
+  }
+  
+  .node:hover {
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+  
+  .node--leaf {
+    fill: white;
+  }
+  
+  .label {
+    font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-anchor: middle;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+  }
+  
+  .label,
+  .node--root,
+  .node--leaf {
+    pointer-events: none;
+  }
