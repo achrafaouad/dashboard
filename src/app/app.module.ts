@@ -15,6 +15,15 @@ import { Gauge2Component } from './charts/gauge2/gauge2.component';
 import { DoughnutComponent } from './charts/doughnut/doughnut.component';
 import { WeatherchartComponent } from './charts/weatherchart/weatherchart.component';
 import { ThirdComponent } from './third/third.component';
+import { GanttComponent } from './gantt/gantt.component';
+import { DxButtonModule } from 'devextreme-angular';
+import { DxGanttModule } from 'devextreme-angular';
+import { ServiceService } from './service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from "ng-apexcharts";
+import {MatSelectModule} from '@angular/material/select';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,13 +40,22 @@ import { ThirdComponent } from './third/third.component';
     DoughnutComponent,
     WeatherchartComponent,
     ThirdComponent,
-
+    GanttComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DxButtonModule,
+    DxGanttModule,
+    HttpClientModule,
+    NgApexchartsModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

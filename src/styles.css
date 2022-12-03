@@ -145,3 +145,195 @@ nav{
     background-color: #3FA796;
     color: white;
   }
+
+
+
+  .localisationDiv_section {
+    display: block;
+    margin: 10px auto auto 10px;
+    width:fit-content
+    
+  }
+  .myButton_section:hover{
+    background-color: rgb(0, 60, 136, 1);
+  }
+  .myButton_section {
+    margin-left: 2px;
+    margin-top: 60px;
+    background-color:rgba(22, 85, 167, 0.6);
+    box-shadow: 2px 2px 0px white;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+    /* margin-top: 5px; */
+  }
+  
+  .myButton_section.clicked{
+    background-color: rgba(22, 170, 35, 0.8);
+  }
+  
+  .myButton_section.clicked:hover{
+  background-color: rgba(22, 170, 35, 1);
+  }
+
+  .localisationDiv_split {
+    display: block;
+    margin: 10px auto auto 10px;
+    width:fit-content
+    
+  }
+  .myButton_split:hover{
+    background-color: rgb(0, 60, 136, 1);
+  }
+  .myButton_split {
+    margin-left: 2px;
+    margin-top: 5px;
+    background-color:rgba(22, 85, 167, 0.6);
+    box-shadow: 2px 2px 0px white;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+    /* margin-top: 5px; */
+  }
+  
+  .myButton_split.clicked{
+    background-color: rgba(22, 170, 35, 0.8);
+  }
+  
+  .myButton_split.clicked:hover{
+  background-color: rgba(22, 170, 35, 1);
+  }
+
+
+  .localisationDiv_edit {
+    display: block;
+    margin: 10px auto auto 10px;
+    width:fit-content
+    
+  }
+  .myButton_edit:hover{
+    background-color: rgb(0, 60, 136, 1);
+  }
+  .myButton_edit {
+    margin-left: 2px;
+    margin-top: 5px;
+    background-color:rgba(22, 85, 167, 0.6);
+    box-shadow: 2px 2px 0px white;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+    /* margin-top: 5px; */
+  }
+  
+  .myButton_edit.clicked{
+    background-color: rgba(22, 170, 35, 0.8);
+  }
+  
+  .myButton_edit.clicked:hover{
+  background-color: rgba(22, 170, 35, 1);
+  }
+
+
+  /*  */
+
+  .localisationDiv_addtask {
+    display: block;
+    margin: 10px auto auto 10px;
+    width:fit-content
+    
+  }
+  .myButton_addtask:hover{
+    background-color: rgb(0, 60, 136, 1);
+  }
+  .myButton_addtask {
+    margin-left: 2px;
+    margin-top: 5px;
+    background-color:rgba(22, 85, 167, 0.6);
+    box-shadow: 2px 2px 0px white;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+    /* margin-top: 5px; */
+  }
+  
+  .myButton_addtask.clicked{
+    background-color: rgba(22, 170, 35, 0.8);
+  }
+  
+  .myButton_addtask.clicked:hover{
+  background-color: rgba(22, 170, 35, 1);
+  }
+  /*  */
+
+  .localisationDiv_pert {
+    display: block;
+    margin: 10px auto auto 10px;
+    width:fit-content
+    
+  }
+  .myButton_pert:hover{
+    background-color: rgb(0, 60, 136, 1);
+  }
+  .myButton_pert {
+    margin-left: 2px;
+    margin-top: 5px;
+    background-color:rgba(22, 85, 167, 0.6);
+    box-shadow: 2px 2px 0px white;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    border: none;
+    align-items: center;
+    /* margin-top: 5px; */
+  }
+  
+  .myButton_pert.clicked{
+    background-color: rgba(22, 170, 35, 0.8);
+  }
+  
+  .myButton_pert.clicked:hover{
+  background-color: rgba(22, 170, 35, 1);
+  }
+
+
+
+
+
+
+  /*  */
+  div.anychart-credits {
+    display: none;
+}
+
+div.chart-container {
+  height: 300px;
+}
+
+
+.cdk-overlay-container {
+  position: absolute  ;
+  z-index: 100500;
+}

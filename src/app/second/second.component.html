@@ -60,7 +60,17 @@
               </div>
             </div>
             <div class="card cardmiddle">
-                <app-bar-chart></app-bar-chart>
+              <div id="chart">
+                <apx-chart
+                  [series]="chartOptions.series"
+                  [chart]="chartOptions.chart"
+                  [dataLabels]="chartOptions.dataLabels"
+                  [plotOptions]="chartOptions.plotOptions"
+                  [xaxis]="chartOptions.xaxis"
+                  [legend]="chartOptions.legend"
+                ></apx-chart>
+              </div>
+              
             </div>
         </div>
         <div class="col-sm-3" >
@@ -89,3 +99,216 @@
   <a href="javascript: void(0);" id="popup-closer" class="ol-popup-closer"></a>
   <div id="popup-content"></div>
 </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="EditModel"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" >
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">La section N {{id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+
+            
+              <div class="container" style="font-size: 12px;">
+                <div class="row">
+                  <div class="col-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nom de la section</label>
+                  <input class="areaQuery" type="text" class="form-control" id="eeInputEmail1" aria-describedby="emailHelp" ngModel name="route_name" [value]="name" (change)="nameF($event)" id="pointClassement" text    > 
+                </div>
+                </div>
+                </div>
+           
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Delais </label>
+                      <input class="areaQuery" type="date" class="form-control"  aria-describedby="emailHelp" ngModel name="pkd" id="pointClassement" text  [value]="delais" (change)="delaisF($event)" > 
+                     
+                    </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">date de depart </label>
+                        <input class="areaQuery" type="date" class="form-control" aria-describedby="emailHelp" ngModelname="pekaF" id="posement" text  [value]="date_depart" (change)="datedepF($event)" > 
+                       
+                      </div>
+                      
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Avancemenent</label>
+                  <input class="areaQuery" type="text" class="form-control" id="eeInputEmail1" aria-describedby="emailHelp" ngModel name="route_name" [value]="avancement" (change)="avancementF($event)" id="pointClassement" text    > 
+                </div>
+                </div>
+                  <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Objet</label>
+                  <input class="areaQuery" type="text" class="form-control" id="eeInputEmail1" aria-describedby="emailHelp" ngModel name="route_name"  id="pointClassement" text [value]="objet" (change)="objetF($event)"    > 
+                </div>
+                </div>
+                </div>
+           
+
+              
+              </div>
+       
+            
+              
+            
+
+
+            <div class="form-group" >
+              <br>
+          <div class="form-group d-flex flex-row-reverse " >
+            
+            <button type="button" class="btn btn-secondary" style="font-size: 12px;" data-bs-dismiss="modal">Close</button>
+            <button  mat-raised-button type="button" style="font-size: 12px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveme()">Save changes</button>
+          </div>
+        </div>
+
+
+    
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- addtask -->
+
+<!-- Modal -->
+<div class="modal fade" id="addtask"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" >
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle tache</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+
+            
+              <div class="container" style="font-size: 12px;">
+                <div class="row">
+                  <div class="col-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nom de la tache</label>
+                  <input class="areaQuery" type="text" class="form-control" id="eeInputEmail1" aria-describedby="emailHelp" ngModel name="route_name" [value]="name" (change)="nameF($event)" id="pointClassement" text    > 
+                </div>
+                </div>
+                </div>
+           
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">date depart </label>
+                      <input class="areaQuery" type="date" class="form-control"  aria-describedby="emailHelp" ngModel name="pkd" id="pointClassement" text  [value]="date_depart" (change)="date_departF($event)" > 
+                     
+                    </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">date arrive </label>
+                        <input class="areaQuery" type="date" class="form-control" aria-describedby="emailHelp" ngModelname="pekaF" id="posement" text  [value]="date_arrive" (change)="date_arriveF($event)" > 
+                       
+                      </div>
+                      
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">version</label>
+                  <select class="form-select" aria-label="Default select example" (change)="versionF($event)">
+                    <option selected>Open this select menu</option>
+                    <option value="init">init</option>
+                    <option value="updated">updated</option>
+                  </select>
+                </div>
+                </div>
+                  <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">phase</label>
+                  <input class="areaQuery" type="text" class="form-control" id="eeInputEmail1" aria-describedby="emailHelp" ngModel name="route_name"  id="pointClassement" text [value]="phase" (change)="phaseF($event)"    > 
+                </div>
+                </div>
+                </div>
+                <label for="exampleInputEmail1">perdessesseurs</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>pred</mat-label>
+                  <mat-select [formControl]="toppings" multiple (selectionChange)="changing()">
+                    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+           
+
+              
+              </div>
+       
+            
+              
+            
+
+
+            <div class="form-group" >
+              <br>
+          <div class="form-group d-flex flex-row-reverse " >
+            
+            <button type="button" class="btn btn-secondary" style="font-size: 12px;" data-bs-dismiss="modal">Close</button>
+            <button  mat-raised-button type="button" style="font-size: 12px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="savemee()">Save changes</button>
+          </div>
+        </div>
+
+
+    
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="pert"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" >
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle tache</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+       
+
+        <div id="container" style="width: 100%; height: 500px;"></div>
+       <div class="form-group" >
+              <br>
+          <div class="form-group d-flex flex-row-reverse " >
+            
+            <button type="button" class="btn btn-secondary" style="font-size: 12px;" data-bs-dismiss="modal">Close</button>
+            <button  mat-raised-button type="button" style="font-size: 12px;" class="btn btn-primary" data-bs-dismiss="modal" (click)="savemee()">Save changes</button>
+          </div>
+        </div>
+
+
+    
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
