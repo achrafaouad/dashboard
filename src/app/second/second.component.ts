@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import olVectorLayer from "ol/layer/Vector";
-import Style from 'ol/style/Style';
+import {Style,Text} from "ol/style";
 import Stroke from 'ol/style/Stroke';
 import Map from "ol/Map";
 import FullScreen from 'ol/control/FullScreen';
@@ -30,6 +30,8 @@ import {
   ApexLegend
 } from "ng-apexcharts";
 import { remove } from 'ol/array';
+import { JsonpClientBackend } from '@angular/common/http';
+import { LineStyle } from '../models/LineStyle';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -70,6 +72,43 @@ export class SecondComponent implements OnInit {
   ressores: any;
   colorsd: any;
   strok: any;
+  polyFil:any;
+  polycolor:any;
+  poly_width:any;
+  polygonSrc1: any;
+  polygonLayer1: any;
+  polyFilF(eve:any){
+    console.log(eve.target.value)
+    this.polyFil = eve.target.value;
+  }
+  polycolorF(eve:any){
+    console.log(eve.target.value)
+    this.polycolor = eve.target.value;
+  }
+  poly_widthF(eve:any){
+    console.log(eve.target.value)
+    this.poly_width = eve.target.value;
+  }
+
+  lines = new LineStyle(
+    "Normal",
+    "center",
+    "middle",
+    "0",
+    "Arial",
+    "Bold",
+    "Point",
+    "0.7853981633974483",
+    true,
+    "12px",
+    "10",
+    "3px",
+    "4px",
+    "black",
+    "white",
+    "4",
+    "38400"
+  );
   verificationClick_section: boolean = false;
   splitClick_section: boolean = false;
   editClick_section: any = false;
@@ -183,11 +222,20 @@ export class SecondComponent implements OnInit {
         this.phases = res
       for(let i of res){
         console.log(i)
+
         this.lineSrc.addFeatures(
           this.format.readFeatures({
             "type": "Feature",
             "properties": {id:i.id,style:i.style,name:i.name,avancement:i.avancement,date_depart:i.date_depart,objet:i.objet,delais:i.delais},
             "geometry": JSON.parse(<string>i.geom)
+          },{dataProjection:"EPSG:4326"})
+        );
+
+        this.polygonSrc1.addFeatures(
+          this.format.readFeatures({
+            "type": "Feature",
+            "properties": {id:i.id,style:i.style,name:i.name,avancement:i.avancement,date_depart:i.date_depart,objet:i.objet,delais:i.delais},
+            "geometry": JSON.parse(<string>i.geomavancement)
           },{dataProjection:"EPSG:4326"})
         );
       }
@@ -196,6 +244,42 @@ export class SecondComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+this.polygonSrc1 = new VectorSource();
+
+  this.polygonLayer1 = new olVectorLayer({
+
+    source: this.polygonSrc1,
+
+    style: (feature, resolution) =>new Style({
+
+      stroke: new Stroke({
+        color: "black",
+        width: 2,
+      }),
+      fill: new Fill({
+        color: "orange",
+      }),
+      text: new Text({
+        textAlign:  'center',
+      textBaseline: <string>this.lines.baseline,
+      font: <string>this.lines.font,
+      text: 'avancement:' + ((+feature.get("avancement"))*100 +'%'),
+      fill: new Fill({ color: "black" }),
+      stroke: new Stroke({ color: "white", width: 3 }),
+      offsetX: 0,
+      offsetY: -15,
+      placement: "point",
+      maxAngle: 45,
+      overflow: this.lines.overflow,
+      rotation: <any>this.lines.rotation,
+
+      
+      })
+    }) ,
+  });
+
     this.lineSrc = new VectorSource();
 
     this.lineLayer = new olVectorLayer({
@@ -203,7 +287,7 @@ export class SecondComponent implements OnInit {
       source: this.lineSrc,
   
       style: (feature,resolution)=> {
-        console.error(resolution)
+        console.error(feature.get("name"))
         var object = JSON.parse(feature.getProperties()["style"]);
         if(0.0002362464157453313>resolution && resolution >0.00008575184020914552){
           this.ressores = 4;
@@ -230,6 +314,22 @@ export class SecondComponent implements OnInit {
         fill: new Fill({
           color: object.remplissageC,
         }),
+        text: new Text({
+          textAlign:  'center',
+        textBaseline: <string>this.lines.baseline,
+        font: <string>this.lines.font,
+        text: feature.get("name"),
+        fill: new Fill({ color: "black" }),
+        stroke: new Stroke({ color: "white", width: 3 }),
+        offsetX: 0,
+        offsetY: -15,
+        placement: "point",
+        maxAngle: 45,
+        overflow: this.lines.overflow,
+        rotation: <any>this.lines.rotation,
+  
+        
+        })
       })}
     });
     this.get_phases();
@@ -372,9 +472,11 @@ export class SecondComponent implements OnInit {
           this.avancement= object.avancement;
           this.objet= object.objet;
           this.style= object.style;
-       
-          
-          
+          this.polyFil = JSON.parse(this.style).remplissageC
+          this.polycolor = JSON.parse(this.style).colorBor
+          this.poly_width = JSON.parse(this.style).strock
+         
+
         this.edit1 = document.createElement("button");
         this.edit1.setAttribute("data-bs-toggle", "modal");
         this.edit1.setAttribute("data-bs-target", "#EditModel");
@@ -455,6 +557,7 @@ export class SecondComponent implements OnInit {
 
     this.mapPrevLine.addLayer(this.pointLayer )
     this.mapPrevLine.addLayer(this.lineLayer )
+    this.mapPrevLine.addLayer(this.polygonLayer1 )
        this.pointSrc.on('addfeature', () =>{
         this.mapPrevLine.getView().fit(
             this.pointSrc.getExtent(),
@@ -828,7 +931,11 @@ export class SecondComponent implements OnInit {
     var obj = {
           id:this.id,
           name:this.name,
-          style:this.style,
+          style:JSON.stringify({
+            remplissageC:this.polyFil,
+            colorBor:this.polycolor,
+            strock: this.poly_width
+          }),
           avancement:this.avancement,
           dateDepart:this.date_depart,
           objet:this.objet,
@@ -1008,4 +1115,55 @@ this.preed= []
     this.pred = this.toppings.value
   }
 
+
+
+  createTextStyle(feature:any, resolution:any, dom:any, type:any) {
+   console.warn(feature.get("name"))
+    if (feature) {
+      const align = dom?.align;
+      const baseline = dom?.baseline;
+      const size = dom.size;
+      const height = dom?.height;
+      const offsetX = parseInt(dom?.offsetX, 10);
+      const offsetY = parseInt(dom?.offsetY, 10);
+      const weight = dom?.weight;
+      const placement = dom?.placement ? dom?.placement : undefined;
+      const maxAngle = dom?.maxangle ? parseFloat(dom?.maxangle) : undefined;
+      const overflow = dom?.overflow ? dom?.overflow == "true" : undefined;
+      const rotation = parseFloat(dom?.rotation);
+      if (dom?.font == "'Open Sans'") {
+        const openSans = document.createElement("link");
+        openSans.href = "https://fonts.googleapis.com/css?family=Open+Sans";
+        openSans.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(openSans);
+        
+      }
+      const font = weight + " " + size + "/" + height + " " + dom?.font;
+      const fillColor = dom?.color;
+      const outlineColor = dom?.outline;
+      const outlineWidth = parseInt(dom?.outlineWidth, 10);
+      return new Text({
+        textAlign: align == "" ? undefined : align,
+        textBaseline: baseline,
+        font: font,
+        text: String(feature.get("name")),
+        fill: new Fill({ color: fillColor }),
+        stroke: new Stroke({ color: outlineColor, width: outlineWidth }),
+        offsetX: offsetX,
+        offsetY: offsetY,
+        placement: placement,
+        maxAngle: maxAngle,
+        overflow: overflow,
+        rotation: rotation,
+      });
+    }
+    return new Text()
+  }
+
+
+  
+  
+
+
 }
+

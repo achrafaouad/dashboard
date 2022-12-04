@@ -161,7 +161,30 @@
 
               
               </div>
-       
+
+              
+      
+                <p style="text-align: center;font-weight:bold;" >polygon style</p>
+                <div  style="background-color: #F2D388; border-radius:6px;border:1px solid black;box-shadow: 5px 5px grey">
+          
+                          <div class="row">
+                            <div class="col-4">
+                              <label for="colorPoint1" style="font-weight:bold;">fillColor : </label>
+                              <input class="form-control" type="color" id="colorPoint1" [value]="polyFil" (change)="polyFilF($event)" >
+                            </div>
+                            <div class="col-4">
+                              <label for="colorPoint1"style="font-weight:bold;">strock_color : </label>
+                              <input class="form-control" type="color" id="colorPoint1" [value]="polycolor" (change)="polycolorF($event)"  >
+                            </div>
+                            <div class="col-4">
+                              <label for="colorPoint1"style="font-weight:bold;">strokeWidth :</label>
+                              <input  class="form-control"type="number" id="colorPoint3" [value]="poly_width"  style="height: 30px;"   (change)="poly_widthF($event)">
+                            </div>
+                        
+                    
+                 
+            </div>
+            </div>
             
               
             

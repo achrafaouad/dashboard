@@ -2,13 +2,21 @@ export class Geom{
     private _id!: any ;
     private _name!: String;
     private _geom!: String;
+    private _geomavancement!: String;
     private _style!: String;
     private _avancement!: String;
     private _date_depart!: Date;
     private _objet!: String;
     private _delais!: Date;
-    public constructor(_delais?: Date,_objet?: String,_date_depart?: Date,_avancement?: String,_id?:any,_geom?:String,_name?:String,_style?:String){
+    public constructor(_delais?: Date,_objet?: String,_date_depart?: Date,_avancement?: String,_id?:any,_geom?:String,_geomavancement?:String,_name?:String,_style?:String){
 
+}
+public get geomavancement() {
+    return this._geomavancement;
+}
+
+public set geomavancement(tt) {
+    this.geomavancement = tt;
 }
 public get delais() {
     return this._delais;
