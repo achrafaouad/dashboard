@@ -252,32 +252,35 @@ this.polygonSrc1 = new VectorSource();
 
     source: this.polygonSrc1,
 
-    style: (feature, resolution) =>new Style({
+  style: (feature, resolution) =>{
+    
+    return new Style({
 
-      stroke: new Stroke({
-        color: "black",
-        width: 2,
-      }),
-      fill: new Fill({
-        color: "orange",
-      }),
-      text: new Text({
-        textAlign:  'center',
-      textBaseline: <string>this.lines.baseline,
-      font: <string>this.lines.font,
-      text: 'avancement:' + ((+feature.get("avancement"))*100 +'%'),
-      fill: new Fill({ color: "black" }),
-      stroke: new Stroke({ color: "white", width: 3 }),
-      offsetX: 0,
-      offsetY: -15,
-      placement: "point",
-      maxAngle: 45,
-      overflow: this.lines.overflow,
-      rotation: <any>this.lines.rotation,
-
+    stroke: new Stroke({
+      color: "black",
+      width: 2,
+    }),
+    fill: new Fill({
+      color: "orange",
+    }),
+    text: new Text({
+      textAlign:  'center',
       
-      })
-    }) ,
+    textBaseline: <string>this.lines.baseline,
+    font: <string>this.lines.font,
+    text: (0.0002362464157453313<resolution)?'':'avancement:' + ((+feature.get("avancement"))*100 +'%'),
+    fill: new Fill({ color: "black" }),
+    stroke: new Stroke({ color: "white", width: 3 }),
+    offsetX: 0,
+    offsetY: -15,
+    placement: "point",
+    maxAngle: 45,
+    overflow: this.lines.overflow,
+    rotation: <any>this.lines.rotation,
+
+    
+    })
+    })} ,
   });
 
     this.lineSrc = new VectorSource();
@@ -318,7 +321,7 @@ this.polygonSrc1 = new VectorSource();
           textAlign:  'center',
         textBaseline: <string>this.lines.baseline,
         font: <string>this.lines.font,
-        text: feature.get("name"),
+        text: (0.002362464157453313<resolution)?'': feature.get("name"),
         fill: new Fill({ color: "black" }),
         stroke: new Stroke({ color: "white", width: 3 }),
         offsetX: 0,
