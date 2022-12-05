@@ -127,7 +127,7 @@ export class SecondComponent implements OnInit {
   phase: any;
   pertClick_section: boolean = false;
   taskss: any;
-  pred: any;
+  pred: any = [];
   preed: any;
   nothere: boolean = false;
   chart:any
@@ -558,9 +558,10 @@ this.polygonSrc1 = new VectorSource();
   }
    })
 
-    this.mapPrevLine.addLayer(this.pointLayer )
+   
     this.mapPrevLine.addLayer(this.lineLayer )
     this.mapPrevLine.addLayer(this.polygonLayer1 )
+    this.mapPrevLine.addLayer(this.pointLayer )
        this.pointSrc.on('addfeature', () =>{
         this.mapPrevLine.getView().fit(
             this.pointSrc.getExtent(),
@@ -688,13 +689,13 @@ this.polygonSrc1 = new VectorSource();
     return {
       "type": "FeatureCollection",
       "features": [
+        
         {
           "type": "Feature",
           "properties": {},
           "geometry": {
             "coordinates": [
-              -6.832048089984056,
-              34.01802146986468
+              -6.416751826965272, 34.452693050986475
             ],
             "type": "Point"
           }
@@ -704,173 +705,7 @@ this.polygonSrc1 = new VectorSource();
           "properties": {},
           "geometry": {
             "coordinates": [
-              -6.856139495451686,
-              34.00612025112163
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.853462672621561,
-              33.9534524798579
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.7157279706563315,
-              33.97504819461591
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.7390893335337125,
-              34.05633609006732
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.052824112435189,
-              34.08577288615707
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.177876310068939,
-              33.82263769538561
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.237643904527204,
-              33.69114786848844
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.19785307532311,
-              33.53346360445664
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.0222282977634904,
-              33.41151019626622
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -4.75435221265144,
-              32.8341998607639
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -4.421171962881829,
-              33.85388860624755
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -4.242466192550808,
-              33.339210973888484
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -4.663484871805508,
-              34.28794068831799
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -5.775095341491863,
-              34.48291171163558
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.2793433999392505,
-              34.73289509945775
-            ],
-            "type": "Point"
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "coordinates": [
-              -6.2005917045391925,
-              34.755294962156384
+              -6.665816065501761, 34.01394834303676
             ],
             "type": "Point"
           }
@@ -956,9 +791,12 @@ this.polygonSrc1 = new VectorSource();
     // console.log(vll.target.value);
 
 this.preed= []
-    for(let i of this.pred){
+
+for(let i of this.pred){
       this.preed.push(<string>(this.getpredid(i)))
     }
+
+    
 
     var obj = {
           date_depart:this.date_depart,
@@ -1079,7 +917,7 @@ this.preed= []
           // set the data
           this.chart.data(this.sortedProducts, "as-table");
           // set chart title
-          this.chart.title("Nodes and Connections Set Simultaneously");
+          this.chart.title("Diagramme de pert associé");
           // display the chart
           // set vertical spacing between tasks
           this.chart.horizontalSpacing("25%");
@@ -1087,7 +925,7 @@ this.preed= []
           var tasks = this.chart.tasks();
           console.log(tasks)
           // set labels with earliest and latest values
-          tasks.upperLabels().format("ES: {%earliestStart}, LS: {%latestStart}");
+          tasks.upperLabels().format("{%name}: ES: {%earliestStart}, LS: {%latestStart}");
           tasks.lowerLabels().format("EF: {%earliestFinish}, LF: {%latestFinish}");
       
    
@@ -1115,6 +953,8 @@ this.preed= []
   }
   changing(){
     console.log(this.toppings.value)
+    var dd =  this.toppings.value
+    console.error(dd == '')
     this.pred = this.toppings.value
   }
 

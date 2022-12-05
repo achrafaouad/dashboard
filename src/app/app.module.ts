@@ -24,6 +24,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GraphsComponent } from './graphs/graphs.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DoughnutComponent,
     WeatherchartComponent,
     ThirdComponent,
-    GanttComponent
+    GanttComponent,
+    GraphsComponent
     
   ],
   imports: [

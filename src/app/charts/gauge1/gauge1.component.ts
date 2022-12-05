@@ -68,25 +68,25 @@ option = {
       },
       data: [
         {
-          value: 70
+          value: 10
         }
       ]
     }
   ]
 };
-setInterval(function () {
-  myChart.setOption({
-    series: [
-      {
-        data: [
-          {
-            value: +(Math.random() * 100).toFixed(2)
-          }
-        ]
-      }
-    ]
-  });
-}, 100);
+// setInterval(function () {
+//   myChart.setOption({
+//     series: [
+//       {
+//         data: [
+//           {
+//             value: +(Math.random() * 100).toFixed(2)
+//           }
+//         ]
+//       }
+//     ]
+//   });
+// }, 100);
 
 if (option && typeof option === 'object') {
   myChart.setOption(option);
